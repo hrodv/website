@@ -86,6 +86,8 @@
      </p>
 
      <p>
+      <div><p><?php include('/Users/Henrik/Documents/Analyse/PYTHON/website_bot/text_ir.txt'); ?></p></div>
+      </iframe>
       <center><img src="images/spread.png" alt="us-yields"></center>
      </p>
 

@@ -1,0 +1,1 @@
+Both Slope and Curvature is positive and a 3 MO zero currently trades at 100.0 (y=0.0), while a 5 YR zero trades at 97.43 (y=0.0052) and a 10 YR zero at 91.94 (y=0.0084). #yield #curve #tbill Source: US.gov
