@@ -12,8 +12,8 @@
             height: 842px;
             width: 800px;
             /* to centre page on screen*/
-            margin-left: 10%;
-            margin-right: 10%;
+            margin-left: auto;
+            margin-right: auto;
             background-color: #ffffff;
         }
 
@@ -60,14 +60,48 @@
             }
         </style>
 
-       <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=0;" />
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
        <meta name="apple-mobile-web-app-capable" content="yes" />
        <meta charset="utf-8">
        <meta name="viewport" content="width=device-width, initial-scale=1">
        <title>North Industrials</title>    
         
-        <br><br/> 
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Ticker Tape</span></a> by TradingView</div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+    {
+    "symbols": [
+      {
+        "proName": "OANDA:SPX500USD",
+        "title": "S&P 500"
+      },
+      {
+        "proName": "OANDA:NAS100USD",
+        "title": "Nasdaq 100"
+      },
+      {
+        "description": "OSEBX",
+        "proName": "OSL:OSEBX"
+      },
+      {
+        "description": "NOK/USD",
+        "proName": "SAXO:NOKUSD"
+      },
+      {
+        "description": "SPOL",
+        "proName": "OSL:SPOL"
+      }
+    ],
+    "colorTheme": "light",
+    "isTransparent": true,
+    "displayMode": "adaptive",
+    "locale": "en"
+  }
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
         <br><br/> 
    </head>
    <body>  
