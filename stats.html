@@ -1,77 +1,39 @@
 <!DOCTYPE html>
 <html>
    <head>
-    <style>
-        body {
-            height: 842px;
-            width: 800px;
-            /* to centre page on screen*/
-            margin-left: auto;
-            margin-right: auto;
-            background-color: #ffffff;
-        }
-
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #333;
-            }
-
-            li {
-            float: left;
-            }
-
-            li a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            }
-
-            li a:hover {
-            background-color: #111;
-            }
-        </style>
-
+       <link rel="stylesheet" href="/Users/Henrik/Documents/Analyse/website/css/template.css" text="style/css">
        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=0;" />
        <meta name="apple-mobile-web-app-capable" content="yes" /> 
        <meta charset="utf-8">
        <meta name="viewport" content="width=device-width, initial-scale=1">
        <title>North Industrials</title>
-
-      
-
        <br><br/> 
 
    </head>
    <body> 
-
+<div>
     <ul>
       <li><a class="active" href="index.html">About</a></li>
       <li><a href="stats.html">Data</a></li>
       <li><a href="reports.html">Reports</a></li>
       <li style="float:right"><a href="disclaimer.html">Disclaimer</a></li>
     </ul>
+        <img src="https://www.ipaa.org/wp-content/uploads/2016/12/economic-header.jpg" alt="data_chart" style="width:800px;height:300px;">
 
-        <h1 align="center"> Statistics</h1>
-        <img src="images/wall-street.jpg" alt="wall-street2" style="width:800px;height:300px;">
-
-     <br><br/>
-     <h2 align="center"> Supply curves </h2>
-     <hr>
-
+    <div class=main-text>
      <p>
         Below there are daily data plots which illustrates the supply for real estate in Oslo in term of number
         of ads from finn.no. The data is updated on a daily basis at 09:00am.
       </p>
+   </div>
 
+   <div class=main-text>
      <p>
        The second plot illustrates the supply for watches by brand Rolex. The data is gathered by the same approach 
        as for the real estate ads and is also updated at the daily basis.
       </p>
+   </div>
+
         <center><img src="images/oslo.png" alt="finn-ads"></center>
      
      <br><br/>
@@ -79,15 +41,17 @@
         <center><img src="images/oslo_rolex.png" alt="rol_finn-ads"></center>
     
      <br><br/>
+     <div class=main-text>
      <p>
        <h3>Download data</h3>
         OS-RE Ad Index - <a href="data.xlsx">Excel</a>
      <br>NO Rolex Ad Index - <a href="data_rolex.xlsx">Excel</a>
      </p>
+   </div>
      <br><br/>
 
      <h2 align="center">Fixed Income</h2>
-     <hr>
+   
      <p>
       <center><img src="images/interest_rates.png" alt="us-yields"></center>
      </p>
@@ -98,7 +62,7 @@
 
      <br><br/>
      <h2 align="center">Macroeconomic Indicators</h2>
-     <hr>
+   
 
      <p>
       <center><img src="images/gdp.png" alt="no-gdp"></center>
@@ -108,8 +72,13 @@
       <center><img src="images/manufacturing.png" alt="no-industry"></center>
      </p>
      
-     <hr>
-     © 2020 North Ind.
      <br><br/>
+   </div>
+
+     <div id="footer">
+      <div2 class="footer-text">© 2020 North Ind.</div2>
+   </div>
+   
+   
    </body>
 </html>
