@@ -8,7 +8,11 @@ body {
     margin-bottom: 10px;
     margin-left: auto;
     margin-right: auto;
-    background-color: rgba(219, 235, 213, 0.849);
+    background-color: rgba(241, 241, 241, 0.849);
+}
+
+.sansserif {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 ul {
@@ -16,7 +20,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: rgb(214, 214, 214);
     }
 
     li {
@@ -25,14 +29,14 @@ ul {
 
     li a {
     display: block;
-    color: white;
+    color: rgb(0, 0, 0);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     }
 
     li a:hover {
-    background-color: #111;
+    background-color: rgb(180, 180, 180);
     }
 
     div {
@@ -44,12 +48,14 @@ ul {
     }
 
       #footer {
-        background: #333;
-        padding: 40px;
+        background: rgb(214, 214, 214);
+        margin-top: 0;
+        padding: 60px;
+        place-content: 0;
      }
      .footer-text {
         margin: 0;
-        color: #fff;
+        color: rgb(0, 0, 0);
      }
 
      .main-text {
@@ -68,7 +74,7 @@ ul {
      }
 
      .text-center {
-      margin: 0;
+      margin: 400;
       width: 40%;
       margin-left: auto;
       margin-right: auto;
@@ -82,3 +88,19 @@ ul {
       margin-right: auto;
       text-align: center;
     }
+
+    .images-container {
+      float: right;
+   }
+   
+   .images-container a {
+       margin: 0;
+       margin-left: 5px;
+       margin-top: auto;
+       margin-bottom: auto;
+   }
+
+   .contact-email {
+     background:transparent;
+     float: right;
+   }
