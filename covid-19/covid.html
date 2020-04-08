@@ -2,7 +2,7 @@
 <html>
     <head>
     
-        <link rel="stylesheet" href="/css/template.css" text="style/css">
+        <link rel="stylesheet" href="template.css" text="style/css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +11,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>North Industrials</title>    
         <img src="logo.png" alt="no-logo" style="width:90px;height:90px;">
+
+        
+
        </head>
             <body> 
                 <div class="sansserif">
@@ -23,13 +26,137 @@
                     <div class="headline-text">
                         <p>
                             <font size="4">
-                            North Industrials is a preliminary set up site for providing data analysis using machine learning techniques. We want to 
-                            illuminate statistical analysis for financial markets and macroeconomcs and provide data gathered when scraping the internet.
+                            The COVID-19 virus have already turned into a pandemic as almost every country in the world
+                            are affected with impact. In this analysis I try highlight the path of cases of virus spread and
+                            visualizing highly affected countries relative to Norway på comparison. The target of this anaylysis
+                            is to check whether the measures by governments have had any affect to the reproduction ratios.
                         </font>
                         </p>
                         </div>
 
-                    
+                        <div class="headline-text"><hr></div>
+                        
+                        <div class="headline-text">
+                            <p>
+                                <font size="3">
+                                First, I need to import relevant packages for later use and import of the dataset which
+                                contain coronavirus data for all countries.
+                            </font>
+                            </p>
+                            </div>
+
+<div class="py-container">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; color: rgb(51, 51, 51); background: rgb(248, 248, 248);"><span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">import</span> pandas <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">as</span> pd
+                                
+<span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">import</span> time
+<span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">import</span> datetime
+
+<span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">import</span> numpy <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">as</span> np
+<span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">from</span> scipy <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">import</span> stats 
+<span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">import</span> scipy.optimize <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">as</span> opt
+<span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">import</span> statsmodels.api <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">as</span> sm
+
+<span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">import</span> matplotlib.pyplot <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">as</span> plt
+<span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">import</span> matplotlib <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">as</span> mpl
+<span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">from</span> matplotlib <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">import</span> style
+
+np.warnings.filterwarnings(<span class="hljs-string" style="color: rgb(221, 17, 68);">'ignore'</span>)
+
+df = pd.read_excel(<span class="hljs-string" style="color: rgb(221, 17, 68);">'coronavirus_dataset.xlsx'</span>)</pre>
+</div>
+
+<div class="py-container">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; color: rgb(51, 51, 51); background: rgb(248, 248, 248);">confirmed = df[df[<span class="hljs-string" style="color: rgb(221, 17, 68);">'type'</span>]==<span class="hljs-string" style="color: rgb(221, 17, 68);">'confirmed'</span>]
+confirmed = confirmed.set_index(<span class="hljs-string" style="color: rgb(221, 17, 68);">'date'</span>)
+
+death = df[df[<span class="hljs-string" style="color: rgb(221, 17, 68);">'type'</span>]==<span class="hljs-string" style="color: rgb(221, 17, 68);">'death'</span>]
+death = death.set_index(<span class="hljs-string" style="color: rgb(221, 17, 68);">'date'</span>)</pre>
+</div>                     
+
+<div class="py-container">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; color: rgb(51, 51, 51); background: rgb(248, 248, 248);">overview = confirmed.groupby(<span class="hljs-string" style="color: rgb(221, 17, 68);">'Country.Region'</span>).sum()
+
+overview_copy = overview
+
+overview = overview[overview[<span class="hljs-string" style="color: rgb(221, 17, 68);">'cases'</span>]&gt;=<span class="hljs-number" style="color: teal;">2000</span>]
+
+style.use(<span class="hljs-string" style="color: rgb(221, 17, 68);">'default'</span>)
+plt.rcParams[<span class="hljs-string" style="color: rgb(221, 17, 68);">'font.family'</span>] = <span class="hljs-string" style="color: rgb(221, 17, 68);">'Calibri'</span>
+mpl.rcParams[<span class="hljs-string" style="color: rgb(221, 17, 68);">'text.color'</span>] = <span class="hljs-string" style="color: rgb(221, 17, 68);">'black'</span>
+
+overview[<span class="hljs-string" style="color: rgb(221, 17, 68);">'cases'</span>].sort_values().plot(figsize=(<span class="hljs-number" style="color: teal;">8</span>,<span class="hljs-number" style="color: teal;">4</span>), kind=<span class="hljs-string" style="color: rgb(221, 17, 68);">'bar'</span>,color=<span class="hljs-string" style="color: rgb(221, 17, 68);">'dimgrey'</span>, zorder=<span class="hljs-number" style="color: teal;">3</span>)
+
+plt.grid(<span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">True</span>, axis=<span class="hljs-string" style="color: rgb(221, 17, 68);">'y'</span>, color=<span class="hljs-string" style="color: rgb(221, 17, 68);">'k'</span>, linestyle=<span class="hljs-string" style="color: rgb(221, 17, 68);">':'</span>, linewidth=<span class="hljs-number" style="color: teal;">1</span>, alpha=<span class="hljs-number" style="color: teal;">.3</span>, zorder=<span class="hljs-number" style="color: teal;">0</span>)
+plt.grid(<span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">True</span>, axis=<span class="hljs-string" style="color: rgb(221, 17, 68);">'x'</span>, color=<span class="hljs-string" style="color: rgb(221, 17, 68);">'k'</span>, linestyle=<span class="hljs-string" style="color: rgb(221, 17, 68);">':'</span>, linewidth=<span class="hljs-number" style="color: teal;">1</span>, alpha=<span class="hljs-number" style="color: teal;">.3</span>, zorder=<span class="hljs-number" style="color: teal;">0</span>)
+
+plt.xticks(rotation=<span class="hljs-number" style="color: teal;">80</span>)
+plt.xlabel(<span class="hljs-string" style="color: rgb(221, 17, 68);">'Country'</span>)</pre>
+</div>
+
+<div class="headline-text">
+<center><img src="bar_covid.png" alt="no-bar"></center>
+</div>
+
+<div class="py-container">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; color: rgb(51, 51, 51); background: rgb(248, 248, 248);">style.use(<span class="hljs-string" style="color: rgb(221, 17, 68);">'default'</span>)
+plt.rcParams[<span class="hljs-string" style="color: rgb(221, 17, 68);">'font.family'</span>] = <span class="hljs-string" style="color: rgb(221, 17, 68);">'Calibri'</span>
+mpl.rcParams[<span class="hljs-string" style="color: rgb(221, 17, 68);">'text.color'</span>] = <span class="hljs-string" style="color: rgb(221, 17, 68);">'black'</span>
+
+china = confirmed[confirmed[<span class="hljs-string" style="color: rgb(221, 17, 68);">'Country.Region'</span>]==<span class="hljs-string" style="color: rgb(221, 17, 68);">'China'</span>].groupby(<span class="hljs-string" style="color: rgb(221, 17, 68);">'date'</span>).sum()[<span class="hljs-string" style="color: rgb(221, 17, 68);">'cases'</span>].cumsum()
+norway = confirmed[confirmed[<span class="hljs-string" style="color: rgb(221, 17, 68);">'Country.Region'</span>]==<span class="hljs-string" style="color: rgb(221, 17, 68);">'Norway'</span>].groupby(<span class="hljs-string" style="color: rgb(221, 17, 68);">'date'</span>).sum()[<span class="hljs-string" style="color: rgb(221, 17, 68);">'cases'</span>].cumsum()
+italy = confirmed[confirmed[<span class="hljs-string" style="color: rgb(221, 17, 68);">'Country.Region'</span>]==<span class="hljs-string" style="color: rgb(221, 17, 68);">'Italy'</span>].groupby(<span class="hljs-string" style="color: rgb(221, 17, 68);">'date'</span>).sum()[<span class="hljs-string" style="color: rgb(221, 17, 68);">'cases'</span>].cumsum()
+sweden = confirmed[confirmed[<span class="hljs-string" style="color: rgb(221, 17, 68);">'Country.Region'</span>]==<span class="hljs-string" style="color: rgb(221, 17, 68);">'Sweden'</span>].groupby(<span class="hljs-string" style="color: rgb(221, 17, 68);">'date'</span>).sum()[<span class="hljs-string" style="color: rgb(221, 17, 68);">'cases'</span>].cumsum()
+us = confirmed[confirmed[<span class="hljs-string" style="color: rgb(221, 17, 68);">'Country.Region'</span>]==<span class="hljs-string" style="color: rgb(221, 17, 68);">'US'</span>].groupby(<span class="hljs-string" style="color: rgb(221, 17, 68);">'date'</span>).sum()[<span class="hljs-string" style="color: rgb(221, 17, 68);">'cases'</span>].cumsum()
+spain = confirmed[confirmed[<span class="hljs-string" style="color: rgb(221, 17, 68);">'Country.Region'</span>]==<span class="hljs-string" style="color: rgb(221, 17, 68);">'Spain'</span>].groupby(<span class="hljs-string" style="color: rgb(221, 17, 68);">'date'</span>).sum()[<span class="hljs-string" style="color: rgb(221, 17, 68);">'cases'</span>].cumsum()
+
+df_c = pd.DataFrame(china.index)
+df_c = df_c.set_index(<span class="hljs-string" style="color: rgb(221, 17, 68);">'date'</span>)
+df_c[<span class="hljs-string" style="color: rgb(221, 17, 68);">'china'</span>] = china.values
+df_c[<span class="hljs-string" style="color: rgb(221, 17, 68);">'norway'</span>] = norway.values
+df_c[<span class="hljs-string" style="color: rgb(221, 17, 68);">'spain'</span>] = spain.values
+df_c[<span class="hljs-string" style="color: rgb(221, 17, 68);">'italy'</span>] = italy.values
+df_c[<span class="hljs-string" style="color: rgb(221, 17, 68);">'us'</span>] = us.values
+
+df_c = df_c[df_c&gt;=<span class="hljs-number" style="color: teal;">10</span>]
+
+df_c.plot(figsize=(<span class="hljs-number" style="color: teal;">8</span>,<span class="hljs-number" style="color: teal;">4</span>), colormap=<span class="hljs-string" style="color: rgb(221, 17, 68);">'Accent'</span>)
+
+plt.grid(<span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">True</span>, axis=<span class="hljs-string" style="color: rgb(221, 17, 68);">'y'</span>, color=<span class="hljs-string" style="color: rgb(221, 17, 68);">'k'</span>, linestyle=<span class="hljs-string" style="color: rgb(221, 17, 68);">':'</span>, linewidth=<span class="hljs-number" style="color: teal;">1</span>, alpha=<span class="hljs-number" style="color: teal;">.3</span>, zorder=<span class="hljs-number" style="color: teal;">0</span>)
+plt.grid(<span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">True</span>, axis=<span class="hljs-string" style="color: rgb(221, 17, 68);">'x'</span>, color=<span class="hljs-string" style="color: rgb(221, 17, 68);">'k'</span>, linestyle=<span class="hljs-string" style="color: rgb(221, 17, 68);">':'</span>, linewidth=<span class="hljs-number" style="color: teal;">1</span>, alpha=<span class="hljs-number" style="color: teal;">.3</span>, zorder=<span class="hljs-number" style="color: teal;">0</span>)</pre>
+</div>
+
+<div class="headline-text">
+    <center><img src="bar_path.png" alt="no-bar"></center>
+</div>
+
+<div class="py-container">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; color: rgb(51, 51, 51); background: rgb(248, 248, 248);">cols = df_c.columns
+
+r0 = pd.DataFrame(df_c.index)
+r0 = r0.set_index(<span class="hljs-string" style="color: rgb(221, 17, 68);">'date'</span>)
+
+theta = <span class="hljs-number" style="color: teal;">12</span>
+<span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">for</span> i <span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">in</span> range(len(cols)):
+    country = cols[i]
+    r0[country] = df_c[country].pct_change().rolling(theta).mean() * theta
+    
+
+style.use(<span class="hljs-string" style="color: rgb(221, 17, 68);">'default'</span>)
+plt.rcParams[<span class="hljs-string" style="color: rgb(221, 17, 68);">'font.family'</span>] = <span class="hljs-string" style="color: rgb(221, 17, 68);">'Calibri'</span>
+mpl.rcParams[<span class="hljs-string" style="color: rgb(221, 17, 68);">'text.color'</span>] = <span class="hljs-string" style="color: rgb(221, 17, 68);">'black'</span>
+
+r0.plot(figsize=(<span class="hljs-number" style="color: teal;">8</span>,<span class="hljs-number" style="color: teal;">4</span>), colormap=<span class="hljs-string" style="color: rgb(221, 17, 68);">'Accent'</span>)
+
+plt.grid(<span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">True</span>, axis=<span class="hljs-string" style="color: rgb(221, 17, 68);">'y'</span>, color=<span class="hljs-string" style="color: rgb(221, 17, 68);">'k'</span>, linestyle=<span class="hljs-string" style="color: rgb(221, 17, 68);">':'</span>, linewidth=<span class="hljs-number" style="color: teal;">1</span>, alpha=<span class="hljs-number" style="color: teal;">.3</span>, zorder=<span class="hljs-number" style="color: teal;">0</span>)
+plt.grid(<span class="hljs-keyword" style="color: rgb(51, 51, 51); font-weight: 700;">True</span>, axis=<span class="hljs-string" style="color: rgb(221, 17, 68);">'x'</span>, color=<span class="hljs-string" style="color: rgb(221, 17, 68);">'k'</span>, linestyle=<span class="hljs-string" style="color: rgb(221, 17, 68);">':'</span>, linewidth=<span class="hljs-number" style="color: teal;">1</span>, alpha=<span class="hljs-number" style="color: teal;">.3</span>, zorder=<span class="hljs-number" style="color: teal;">0</span>)
+
+plt.title(<span class="hljs-string" style="color: rgb(221, 17, 68);">'Reproduction Rates (r0)'</span>)</pre>
+
+</div>
+
+<div class="headline-text">
+    <center><img src="bar_r0.png" alt="no-bar"></center>
+</div>
      
         <br><br/>
 
