@@ -1,3 +1,4 @@
 RewriteEngine On
 RewriteCond %{index.html} !-f
+RewriteCond %{stats.html} !-f
 RewriteRule ^([^\.]+)$ $1.html [NC,L]
