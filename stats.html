@@ -14,12 +14,25 @@
    </head>
    <body> 
 <div class="sansserif">
-    <ul>
-      <li><a class="active" href="index.html">Home</a></li>
-      <li><a href="stats.html">Data</a></li>
-      <li><a href="reports.html">Reports</a></li>
-      <li style="float:right"><a href="disclaimer.html">Disclaimer</a></li>
-    </ul>
+   <div>
+      <ul>
+          <li><a class="active" href="index.html">Home</a></li>
+          <li><a href="reports.html">Reports</a></li>
+          <div class="dropdown" style="background: transparent;">
+              <button class="dropbtn">Data 
+              <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+              <a href="stats.html">Overview</a>
+              <a href="#">Macroeconomics</a>
+              <a href="#">Real Estate</a>
+              <a href="#">Fixed Income</a>
+              <a href="#">Equities</a>
+              </div>
+          </div> 
+          <li style="float:right"><a href="disclaimer.html">Disclaimer</a></li>
+      </ul>
+  </div>
         <img src="https://www.ipaa.org/wp-content/uploads/2016/12/economic-header.jpg" alt="data_chart" style="width:1000px;height:300px;">
 
     <div class=main-text>
