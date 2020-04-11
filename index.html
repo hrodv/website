@@ -2,7 +2,7 @@
 <html>
    <head>
     
-    <link rel="stylesheet" href="/css/template.css" text="style/css">
+    <link rel="stylesheet" href="css/template.css" text="style/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,14 +14,25 @@
    </head>
    <body>  
     <div class="sansserif">
-    <div>
-    <ul>
-        <li><a class="active" href="index.html">Home</a></li>
-        <li><a href="stats.html">Data</a></li>
-        <li><a href="reports.html">Reports</a></li>
-        <li style="float:right"><a href="disclaimer.html">Disclaimer</a></li>
-      </ul>
-    </div>
+        <div>
+            <ul>
+                <li><a class="active" href="index.html">Home</a></li>
+                <li><a href="reports.html">Reports</a></li>
+                <div class="dropdown" style="background: transparent;">
+                    <button class="dropbtn">Data 
+                    <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                    <a href="stats.html">Overview</a>
+                    <a href="#">Macroeconomics</a>
+                    <a href="#">Real Estate</a>
+                    <a href="#">Fixed Income</a>
+                    <a href="#">Equities</a>
+                    </div>
+                </div> 
+                <li style="float:right"><a href="disclaimer.html">Disclaimer</a></li>
+            </ul>
+        </div>
 
         
         <h2 align="center">About</h2>
