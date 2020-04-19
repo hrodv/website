@@ -9,7 +9,7 @@ loginButton.addEventListener("click", (e) => {
 
     if (username === "user" && password === "web_dev") {
         alert("GZ. You´re in.");
-        location.href="index"
+        location.href="www.northindustrials.com"
     } else {
         loginErrorMsg.style.opacity = 1;
     }
