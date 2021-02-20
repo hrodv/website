@@ -17,14 +17,14 @@ height: 100px;
 width: 100%;
 margin-left: auto;
 margin-right: auto;
-border-top-left-radius:25px;
-border-top-right-radius:25px;
 background: rgb(214, 214, 214);
 }
 
 #footer {
 background: rgb(214, 214, 214);
 margin-top: 0;
+border-top-left-radius:25px;
+border-top-right-radius:25px;
 padding: 60px;
 place-content: 0;
 }
